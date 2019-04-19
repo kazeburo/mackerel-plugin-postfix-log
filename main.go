@@ -26,7 +26,7 @@ var MaxReadSize int64 = 500 * 1000 * 1000
 
 type cmdOpts struct {
 	LogFile       string `long:"logfile" default:"/var/log/maillog" description:"path to nginx ltsv logfile" required:"true"`
-	PosFilePrefix string `long:"posfile-prefix" default:"postfixlog" description:"prefix added position file"`
+	PosFilePrefix string `long:"posfile-prefix" default:"maillog" description:"prefix added position file"`
 	Version       bool   `short:"v" long:"version" description:"Show version"`
 }
 
@@ -128,7 +128,7 @@ func getStats(opts cmdOpts, logger *zap.Logger) error {
 	if curUser != nil {
 		uid = curUser.Uid
 	}
-	posFile := filepath.Join(tmpDir, fmt.Sprintf("%s-%s-v1", opts.PosFilePrefix, uid))
+	posFile := filepath.Join(tmpDir, fmt.Sprintf("%s-postfixlog-%s-v1", opts.PosFilePrefix, uid))
 	duration := float64(0)
 	bin := postfixlog.NewStatsBin()
 
