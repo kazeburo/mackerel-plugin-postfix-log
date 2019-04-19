@@ -10,7 +10,7 @@ Usage:
 
 Application Options:
       --logfile=        path to nginx ltsv logfile (/var/log/maillog)
-      --posfile-prefix= prefix added position file (postfixlog)
+      --posfile-prefix= prefix added position file (maillog)
   -v, --version         Show version
 
 Help Options:
