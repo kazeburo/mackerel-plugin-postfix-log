@@ -169,6 +169,7 @@ func getStats(opts cmdOpts, logger *zap.Logger) error {
 			logger.Warn("Could not search previous file",
 				zap.Error(err),
 			)
+			// new file
 			err := parseFile(
 				opts.LogFile,
 				0, // lastPos
