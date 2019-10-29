@@ -46,7 +46,7 @@ func (p *parser) Finish(duration float64) {
 func getStats(opts cmdOpts, logger *zap.Logger) error {
 	bin := postfixlog.NewStatsBin()
 	p := &parser{bin}
-	err := followparser.Parse(opts.PosFilePrefix, opts.LogFile, p, logger)
+	err := followparser.Parse(fmt.Sprintf("%s-postfixlog", opts.PosFilePrefix), opts.LogFile, p, logger)
 	if err != nil {
 		return err
 	}
