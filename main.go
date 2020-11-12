@@ -3,13 +3,13 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"log"
 	"os"
 	"runtime"
 
 	flags "github.com/jessevdk/go-flags"
 	"github.com/kazeburo/followparser"
 	"github.com/kazeburo/mackerel-plugin-postfix-log/postfixlog"
-	"go.uber.org/zap"
 )
 
 // Version by Makefile
@@ -43,10 +43,10 @@ func (p *parser) Finish(duration float64) {
 	p.bin.Display(duration)
 }
 
-func getStats(opts cmdOpts, logger *zap.Logger) error {
+func getStats(opts cmdOpts) error {
 	bin := postfixlog.NewStatsBin()
 	p := &parser{bin}
-	err := followparser.Parse(fmt.Sprintf("%s-postfixlog", opts.PosFilePrefix), opts.LogFile, p, logger)
+	err := followparser.Parse(fmt.Sprintf("%s-postfixlog", opts.PosFilePrefix), opts.LogFile, p)
 	if err != nil {
 		return err
 	}
@@ -79,11 +79,9 @@ func _main() int {
 		printVersion()
 		return 0
 	}
-
-	logger, _ := zap.NewProduction()
-	err = getStats(opts, logger)
+	err = getStats(opts)
 	if err != nil {
-		logger.Error("getStats", zap.Error(err))
+		log.Printf("getStats :%v", err)
 		return 1
 	}
 	return 0
