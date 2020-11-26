@@ -1,5 +1,5 @@
 VERSION=0.0.4
-LDFLAGS=-ldflags "-w -s -X main.Version=${VERSION}"
+LDFLAGS=-ldflags "-w -s -X main.version=${VERSION}"
 GO111MODULE=on
 
 all: mackerel-plugin-postfix-log
@@ -20,6 +20,9 @@ deps-update:
 	go get -u -d
 	go mod tidy
 
+check:
+	go test ./...
+
 clean:
 	rm -rf mackerel-plugin-postfix-log
 
@@ -27,4 +30,3 @@ tag:
 	git tag v${VERSION}
 	git push origin v${VERSION}
 	git push origin master
-	goreleaser --rm-dist
