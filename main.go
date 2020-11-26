@@ -13,7 +13,7 @@ import (
 )
 
 // Version by Makefile
-var Version string
+var version string
 
 type cmdOpts struct {
 	LogFile       string `long:"logfile" default:"/var/log/maillog" description:"path to nginx ltsv logfile" required:"true"`
@@ -59,7 +59,7 @@ func printVersion() {
 Compiler: %s %s
 `,
 		os.Args[0],
-		Version,
+		version,
 		runtime.Compiler,
 		runtime.Version())
 }
@@ -72,12 +72,12 @@ func _main() int {
 	opts := cmdOpts{}
 	psr := flags.NewParser(&opts, flags.Default)
 	_, err := psr.Parse()
-	if err != nil {
-		return 1
-	}
 	if opts.Version {
 		printVersion()
 		return 0
+	}
+	if err != nil {
+		return 1
 	}
 	err = getStats(opts)
 	if err != nil {
