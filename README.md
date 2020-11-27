@@ -2,7 +2,7 @@
 
 Read and analyze postfix logs
 
-## usage
+## Usage
 
 ```
 Usage:
@@ -17,7 +17,7 @@ Help Options:
   -h, --help            Show this help message
  ```
 
-## sample
+Sample
 
 ```
 postfixlog.total_delay.average  0.240476        1555681849
@@ -48,3 +48,7 @@ postfixlog.transfer_ratio.2xx_percentage        100.000000      1555681849
 postfixlog.transfer_ratio.4xx_percentage        0.000000        1555681849
 postfixlog.transfer_ratio.5xx_percentage        0.000000        1555681849
 ```
+
+## Install
+
+Please download release page or `mkr plugin install kazeburo/mackerel-plugin-postfix-log`.
