@@ -95,7 +95,7 @@ func (sb *StatsBin) Display(duration float64) {
 	sb.DisplayDelay(now, "recving", sb.receivingDelay)
 	sb.DisplayDelay(now, "queuing", sb.queuingDelay)
 	sb.DisplayDelay(now, "connection", sb.connectionDelay)
-	sb.DisplayDelay(now, "transmission", sb.connectionDelay)
+	sb.DisplayDelay(now, "transmission", sb.transmissionDelay)
 
 	if duration > 0 {
 		fmt.Printf("postfixlog.transfer_num.2xx_count\t%f\t%d\n", sb.c2xx/duration, now)
